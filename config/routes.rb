@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  get "/one_contact_url" => 'entries#one_contact_method'
-  get "/all_contact_url" => 'entries#all_contact_method'
+get "/entries" => 'entries#index'
+post "/entries" => 'entries#create'
+get "/entries/:id" => 'entries#show'
+patch "/entries/:id" => 'entries#update'
+delete "entries/:id" => 'entries#destroy'
 end

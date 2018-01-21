@@ -86,9 +86,8 @@ elsif input_option == "5"
         response = Unirest.delete("http://localhost:3000/entries/#{input_id}")
 
         data = response.body
-        puts JSON.pretty_generate(data)
-
-  end
+        puts JSON.pretty_generate(data["message"])
+end
 
 
 

@@ -1,6 +1,6 @@
 require 'unirest'
 
-system 'clear'\
+system 'clear'
 
 
 puts "Welcome to My Contacts"
@@ -27,8 +27,14 @@ elsif input_option == "2"
     print "First Name: "
     client_params[:fn] = gets.chomp
 
+    print "Middle Name: "
+    client_params[:middle_name] = gets.chomp
+
     print "Last Name: "
     client_params[:last_name] = gets.chomp
+
+    print "Bio: "
+    client_params[:bio] = gets.chomp
 
     print "Email: "
     client_params[:email] = gets.chomp
@@ -64,8 +70,14 @@ elsif input_option == "4"
     print "First Name: "
     client_params[:fn] = gets.chomp
 
+    print "Middle Name: "
+    client_params[:middle_name] = gets.chomp
+
     print "Last Name: "
     client_params[:last_name] = gets.chomp
+
+    print "Bio: "
+    client_params[:bio] = gets.chomp
 
     print "Email: "
     client_params[:email] = gets.chomp
@@ -86,7 +98,7 @@ elsif input_option == "5"
         response = Unirest.delete("http://localhost:3000/entries/#{input_id}")
 
         data = response.body
-        puts JSON.pretty_generate(data["message"])
+        puts JSON.pretty_generate(data)
 end
 
 

@@ -1,7 +1,7 @@
 class Entry < ApplicationRecord
 
   def friendly_full_name
-    "#{fn} #{ln}".titleize   #this will work the same way as before, even though we are not setting a variable to anything, since the method will still be returning a value when it ends
+    "#{fn} #{middle_name} #{ln}".titleize   #this will work the same way as before, even though we are not setting a variable to anything, since the method will still be returning a value when it ends
   end
 
   def friendly_created_at
@@ -21,6 +21,7 @@ class Entry < ApplicationRecord
       {
         id: id,
         full_name:  friendly_full_name,
+        middle_name: middle_name,
         first_name: fn,
         last_name: ln,
         email: email,

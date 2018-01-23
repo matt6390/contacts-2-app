@@ -8,8 +8,10 @@ class EntriesController < ApplicationController
     def create
         entry = Entry.new(
                               id: params[:id],
-                              first_name: params[:first_name],
+                              first_name: params[:fn],
+                              middle_name: params[:middle_name],
                               last_name: params[:last_name],
+                              bio: params[:bio],
                               email: params[:email],
                               p_num: params[:p_num]
                               )
@@ -27,7 +29,9 @@ class EntriesController < ApplicationController
 
        entry.id = params[:id]
        entry.first_name = params[:first_name]
+       entry.middle_name = params[:middle_name]
        entry.last_name = params[:last_name]
+       entry.bio = params[:bio]
        entry.email = params[:email]
        entry.p_num = params[:p_num]
        entry.save

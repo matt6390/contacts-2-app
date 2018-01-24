@@ -25,7 +25,7 @@ elsif input_option == "2"
     client_params[:id] = gets.chomp
 
     print "First Name: "
-    client_params[:fn] = gets.chomp
+    client_params[:first_name] = gets.chomp
 
     print "Middle Name: "
     client_params[:middle_name] = gets.chomp
@@ -46,11 +46,18 @@ elsif input_option == "2"
                           "http://localhost:3000/entries",
                           parameters: client_params
                           )
-    entry = response.body
-    puts JSON.pretty_generate(entry)
+    if response.code == 200
+      entry = response.body
+      puts JSON.pretty_generate(entry)
+    else
+      errors = response.body
+      errors.each do |error|
+        p error 
+      end
+    end
 
 elsif input_option == "3"
-    print "Which contact would you like to see? (Please enter a number)"
+    print "Which contact would you like to see? (Please enter a number): "
     contact_id = gets.chomp
 
     response = Unirest.get("http://localhost:3000/entries/#{contact_id}")
@@ -68,7 +75,7 @@ elsif input_option == "4"
     client_params[:id] = gets.chomp
 
     print "First Name: "
-    client_params[:fn] = gets.chomp
+    client_params[:first_name] = gets.chomp
 
     print "Middle Name: "
     client_params[:middle_name] = gets.chomp
@@ -89,8 +96,15 @@ elsif input_option == "4"
                             "http://localhost:3000/entries/#{input_id}",
                             parameters: client_params
                             )
-      entry = response.body
-      puts JSON.pretty_generate(entry)
+      if response.code == 200
+        entry = response.body
+        puts JSON.pretty_generate(entry)
+      else
+        errors = response.body
+        errors.each do |error|
+          p error 
+        end
+      end
 elsif input_option == "5"
         print "Enter contact id: "
         input_id = gets.chomp

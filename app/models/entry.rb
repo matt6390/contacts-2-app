@@ -1,5 +1,10 @@
 class Entry < ApplicationRecord
 
+  validates :fn, :ln, presence: true  #had a big problem with having this validation being set to :first_name and :last_name
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A.{2,}@\w{2,}[.][a-zA-Z]{2,3}\z/, message: "Must be an email" }
+
+
   def friendly_full_name
     "#{fn} #{middle_name} #{ln}".titleize   #this will work the same way as before, even though we are not setting a variable to anything, since the method will still be returning a value when it ends
   end

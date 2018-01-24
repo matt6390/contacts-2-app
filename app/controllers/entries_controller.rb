@@ -7,16 +7,20 @@ class EntriesController < ApplicationController
 
     def create
         entry = Entry.new(
-                              id: params[:id],
-                              first_name: params[:fn],
-                              middle_name: params[:middle_name],
-                              last_name: params[:last_name],
-                              bio: params[:bio],
-                              email: params[:email],
-                              p_num: params[:p_num]
-                              )
-        entry.save
-        render json: entry.as_json    
+                          id: params[:id],
+                          fn: params[:first_name],
+                          middle_name: params[:middle_name],
+                          ln: params[:last_name],
+                          bio: params[:bio],
+                          email: params[:email],
+                          p_num: params[:p_num]
+                          )
+      if entry.save
+        render json: entry.as_json
+      else
+        render json: {errors: entry.errors.full_messages}, status: :unprocessable_entity 
+      end
+
     end
 
     def show
@@ -28,15 +32,18 @@ class EntriesController < ApplicationController
        entry = Entry.find(params[:id])
 
        entry.id = params[:id]
-       entry.first_name = params[:first_name]
+       entry.fn = params[:first_name]
        entry.middle_name = params[:middle_name]
-       entry.last_name = params[:last_name]
+       entry.ln = params[:last_name]
        entry.bio = params[:bio]
        entry.email = params[:email]
        entry.p_num = params[:p_num]
-       entry.save
-
-       render json: entry.as_json 
+       
+      if entry.save
+        render json: entry.as_json
+      else
+        render json: {errors: entry.errors.full_messages}, status: :unprocessable_entity
+      end
     end
 
     def destroy

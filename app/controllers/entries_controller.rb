@@ -2,6 +2,12 @@ class EntriesController < ApplicationController
 
     def index
       entries = Entry.all
+      search_term = params[:search]
+
+      if search_term
+        entries = entries.where("fn iLIKE ? OR id iLIKE ? OR ln iLIKE ? OR bio iLIKE ? OR email iLIKE ? OR p_num iLIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+      end
+
       render json: entries.as_json
     end
 

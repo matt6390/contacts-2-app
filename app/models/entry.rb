@@ -22,18 +22,18 @@ class Entry < ApplicationRecord
   end
 
 
-  def as_json
-      {
-        id: id,
-        full_name:  friendly_full_name,
-        middle_name: middle_name,
-        first_name: fn,
-        last_name: ln,
-        email: email,
-        p_num: japanese_numbers,
-        created_at: friendly_created_at,
-        updated_at: friendly_updated_at
-      }
-  end
+  # def as_json
+  #     {
+  #       id: id,
+  #       full_name:  friendly_full_name,
+  #       middle_name: middle_name,
+  #       first_name: fn,
+  #       last_name: ln,
+  #       email: email,
+  #       p_num: japanese_numbers,
+  #       created_at: friendly_created_at,
+  #       updated_at: friendly_updated_at
+  #     }
+  # end
     
 end

@@ -1,0 +1,3 @@
+module EntriesView
+
+end

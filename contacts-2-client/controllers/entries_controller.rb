@@ -8,7 +8,7 @@ module EntriesController
     entry_hashs.each do |entry_hash|
       entries << Entry.new(entry_hash)
     end
-      
+      entries_index_view(entries)
 
   end
 
@@ -57,9 +57,10 @@ module EntriesController
 
     response = Unirest.get("http://localhost:3000/entries/#{contact_id}")
 
-    entry = response.body
+    entry_hash = response.body
+    entry = Entry.new(entry_hash)
 
-    puts JSON.pretty_generate(entry)
+    entries_show_view(entry)
   end
 
   def entries_update_action

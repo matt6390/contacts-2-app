@@ -1,12 +1,12 @@
 require 'unirest'
-require_relative 'controllers/entries_controller'
-require_relative 'models/entry'
-require_relative 'views/entries_views'
+require './controllers/entries_controller.rb'
+require './models/entry.rb'
+require './views/entries_views.rb'
 
 class Frontend
-    
+
     include EntriesController
-    include EntriesViews
+    include EntriesView
 
   def run
     
